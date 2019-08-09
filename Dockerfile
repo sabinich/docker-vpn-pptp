@@ -1,8 +1,8 @@
 FROM alpine:latest
-MAINTAINER Przemek Szalko <przemek@mobtitude.com>
-MAINTAINER vadim s. sabinich <vadim@sabini.ch>
-
-RUN apk add pptpd iptables
+LABEL maintainer=przemek@mobtitude.com> \
+      maintainer=vadim@sabini.ch
+      
+RUN apk add pptpd ppp iptables
 
 ADD ./etc/pptpd.conf /etc/pptpd.conf
 ADD ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
