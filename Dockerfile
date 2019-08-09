@@ -1,13 +1,13 @@
-FROM ubuntu:16.04
+FROM alpine:latest
 MAINTAINER Przemek Szalko <przemek@mobtitude.com>
+MAINTAINER vadim s. sabinich <vadim@sabini.ch>
 
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y pptpd iptables
+RUN apk add pptpd iptables
 
-COPY ./etc/pptpd.conf /etc/pptpd.conf
-COPY ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
+ADD ./etc/pptpd.conf /etc/pptpd.conf
+ADD ./etc/ppp/pptpd-options /etc/ppp/pptpd-options
 
-COPY entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 RUN chmod 0700 /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
