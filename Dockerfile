@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer=przemek@mobtitude.com> \
+LABEL maintainer=przemek@mobtitude.com \
       maintainer=vadim@sabini.ch
       
 RUN apk add pptpd ppp iptables
