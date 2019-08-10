@@ -1,0 +1,25 @@
+configVersion: 1
+project: vpn-pptp
+
+---
+image: ~
+from: alpine:latest
+docker:
+ ENTRYPOINT: ["/entrypoint.sh"]
+ CMD: ["pptpd", "--fg"]
+
+git:
+ - add: /entrypoint.sh
+   to: /entrypoint.sh
+ - add: /etc/pptpd.conf
+   to: /etc/pptpd.conf
+ - add: /etc/ppp/pptpd-options
+   to: /etc/ppp/pptpd-options
+
+shell:
+ beforeInstall:
+ - apk update --no-cache
+ - apk add pptpd ppp iptables
+ 
+ install:
+ - chmod +x /entrypoint.sh 
